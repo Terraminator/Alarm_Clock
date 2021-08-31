@@ -16,10 +16,23 @@ void setup() {
 }
 
 
+void sleep_night(){
+  //sleeps until you are awake
+  for(int i=sleeptime/60000; i>0; i--) {
+    delay(60000);
+  }
+}
 
 void loop() {
-  tone(sound_pin, frequency, 50000);
-  while(1){
+    int ye = 1;
+    while(ye == 1){
+      int buttonState_;
+      buttonState_ = digitalRead(button_pin);
+      if (buttonState_ == LOW) {
+        tone(sound_pin, frequency, 50000);
+        ye = 0;
+      }
+    }
     sleep_night();
     tone(sound_pin, frequency, duration);
     delay(duration);
@@ -33,12 +46,4 @@ void loop() {
         yee = 0;
       }
     }
-  }
-}
-
-void sleep_night(){
-  //sleeps until you are awake
-  for(int i=sleeptime/60000; i>0; i--) {
-    delay(60000);
-  }
 }
